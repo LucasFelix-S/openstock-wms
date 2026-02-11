@@ -34,4 +34,27 @@ public class ProdutoService {
         return produtoRepository.findByDescricaoContaining(produtoDescricao);
     }
 
+    public Produto criar(Produto produto) {
+        return produtoRepository.save(produto);
+    }
+
+    public ResponseEntity<Produto> atualizar(Long produtoId, Produto produto) {
+        if(!produtoRepository.existsById(produtoId)) {
+            ResponseEntity.notFound().build();
+        }
+
+        produto.setId(produtoId);
+        Produto produtoAtualizado = produtoRepository.save(produto);
+        return ResponseEntity.ok(produtoAtualizado);
+    }
+
+    public ResponseEntity<Void> deletar(Long produtoId) {
+        if(!produtoRepository.existsById(produtoId)) {
+            ResponseEntity.notFound().build();
+        }
+
+        produtoRepository.deleteById(produtoId);
+        return ResponseEntity.noContent().build();
+    }
+
 }

@@ -29,5 +29,4 @@ public class Produto {
 
     @Column(name = "unidade_medida_id")
     private String idUnidadeMedida;
-
 }
