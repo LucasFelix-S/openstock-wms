@@ -2,6 +2,7 @@ package io.opensotck.wms.api.controller;
 
 import io.opensotck.wms.domain.model.Produto;
 import io.opensotck.wms.domain.service.ProdutoService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,12 +35,12 @@ public class ProdutoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Produto criarProduto(@RequestBody Produto produto) {
+    public Produto criarProduto(@Valid @RequestBody Produto produto) {
         return produtoService.criar(produto);
     }
 
     @PutMapping("/atualizar/{produtoId}")
-    public ResponseEntity<Produto> atualizarProduto(@PathVariable Long produtoId,
+    public ResponseEntity<Produto> atualizarProduto(@Valid @PathVariable Long produtoId,
                                                     @RequestBody Produto produto) {
 
         return produtoService.atualizar(produtoId, produto);
