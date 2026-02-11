@@ -38,4 +38,16 @@ public class ProdutoController {
         return produtoService.criar(produto);
     }
 
+    @PutMapping("/atualizar/{produtoId}")
+    public ResponseEntity<Produto> atualizarProduto(@PathVariable Long produtoId,
+                                                    @RequestBody Produto produto) {
+
+        return produtoService.atualizar(produtoId, produto);
+    }
+
+    @DeleteMapping("/deletar/{produtoId}")
+    public ResponseEntity<Void> deletarProduto(@PathVariable Long produtoId) {
+        return produtoService.deletar(produtoId);
+    }
+
 }
