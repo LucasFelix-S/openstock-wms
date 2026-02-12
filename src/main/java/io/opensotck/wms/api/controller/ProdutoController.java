@@ -19,7 +19,7 @@ public class ProdutoController {
     }
 
     @GetMapping
-    public List<Produto> listarTodosProdutos() {
+    public List<Produto> listarTodosProduto() {
         return produtoService.listarTodos();
     }
 
