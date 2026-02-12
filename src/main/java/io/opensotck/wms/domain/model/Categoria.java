@@ -1,0 +1,31 @@
+package io.opensotck.wms.domain.model;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
+@Table(name = "categoria")
+public class Categoria {
+
+    @Id
+    @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    @NotBlank
+    @NotNull
+    private Long id;
+
+    @Column(name = "descricao")
+    @NotBlank
+    @NotNull
+    @Size(min=3, max=50)
+    private String descricao;
+}
