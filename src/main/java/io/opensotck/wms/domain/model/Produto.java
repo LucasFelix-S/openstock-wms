@@ -28,6 +28,8 @@ public class Produto {
     private String descricao;
 
     @Column(name = "categoria_id")
+    @NotNull
+    @NotBlank
     private String idCategoria;
 
     @Column(name = "status_id")

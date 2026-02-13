@@ -2,8 +2,10 @@ package io.opensotck.wms.domain.service;
 
 import io.opensotck.wms.domain.model.Categoria;
 import io.opensotck.wms.domain.repository.CategoriaRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoriaService {
@@ -17,6 +19,19 @@ public class CategoriaService {
         return categoriaRepository.findAll();
     }
 
+    public ResponseEntity<Categoria> listarPorId(Long categoriaId) {
 
+        Optional<Categoria> categoriaOptional = categoriaRepository.findById(categoriaId);
+
+        if(categoriaOptional.isPresent()) {
+            return ResponseEntity.ok(categoriaOptional.get());
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
+    public List<Categoria> listarPorDescricao(String categoriaDescricao) {
+        return categoriaRepository.findByDescricaoContaining(categoriaDescricao);
+    }
 
 }
