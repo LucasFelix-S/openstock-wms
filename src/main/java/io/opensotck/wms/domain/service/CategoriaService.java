@@ -34,4 +34,29 @@ public class CategoriaService {
         return categoriaRepository.findByDescricaoContaining(categoriaDescricao);
     }
 
+    public Categoria criar(Categoria categoria) {
+        return categoriaRepository.save(categoria);
+    }
+
+    public ResponseEntity<Categoria> atualizar(Long categoriaId, Categoria categoria) {
+
+        if(!categoriaRepository.existsById(categoriaId)) {
+            return ResponseEntity.notFound().build();
+        }
+
+        categoria.setId(categoriaId);
+
+        Categoria categoriaAtualizada = categoriaRepository.save(categoria);
+        return ResponseEntity.ok(categoriaAtualizada);
+    }
+
+    public ResponseEntity<Void> deletar(Long categoriaId) {
+
+        if(!categoriaRepository.existsById(categoriaId)) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.noContent().build();
+    }
+
 }

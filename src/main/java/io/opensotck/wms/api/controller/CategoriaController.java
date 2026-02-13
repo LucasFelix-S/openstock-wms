@@ -2,11 +2,11 @@ package io.opensotck.wms.api.controller;
 
 import io.opensotck.wms.domain.model.Categoria;
 import io.opensotck.wms.domain.service.CategoriaService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -32,6 +32,24 @@ public class CategoriaController {
     @GetMapping("/descricao/{categoriaDescricao}")
     public List<Categoria> listarCategoriaPorDescricao(@PathVariable String categoriaDescricao) {
         return categoriaService.listarPorDescricao(categoriaDescricao);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Categoria criarCategoria(@RequestBody Categoria categoria) {
+        return categoriaService.criar(categoria);
+    }
+
+    @PutMapping("/atualizar/{categoriaId}")
+    public ResponseEntity<Categoria> atualizarCategoria(@Valid @PathVariable Long categoriaId,
+                                                        @RequestBody Categoria categoria) {
+
+        return categoriaService.atualizar(categoriaId, categoria);
+    }
+
+    @DeleteMapping("/deletar/{categoriaId}")
+    public ResponseEntity<Void> deletarCategoria(@Valid @PathVariable Long categoriaId) {
+        return categoriaService.deletar(categoriaId);
     }
 
 }
