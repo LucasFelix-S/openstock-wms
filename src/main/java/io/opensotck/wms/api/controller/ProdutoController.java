@@ -23,12 +23,12 @@ public class ProdutoController {
         return produtoService.listarTodos();
     }
 
-    @GetMapping("/id/{produtoId}")
+    @GetMapping("/{produtoId}")
     public ResponseEntity<Produto> listarProdutoPorId(@PathVariable Long produtoId) {
         return produtoService.listarPorId(produtoId);
     }
 
-    @GetMapping("/descricao/{produtoDescricao}")
+    @GetMapping("/{produtoDescricao}")
     public List<Produto> listarProdutoPorDescricao(@PathVariable String produtoDescricao) {
         return produtoService.listarPorNome(produtoDescricao);
     }
@@ -39,10 +39,11 @@ public class ProdutoController {
         return produtoService.criar(produto);
     }
 
-    @PutMapping("/atualizar/{produtoId}")
+    @PutMapping("/{produtoId}")
     public ResponseEntity<Produto> atualizarProduto(@Valid @PathVariable Long produtoId,
                                                     @RequestBody Produto produto) {
 
         return produtoService.atualizar(produtoId, produto);
     }
+
 }

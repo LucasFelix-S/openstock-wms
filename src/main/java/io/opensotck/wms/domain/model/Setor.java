@@ -1,7 +1,10 @@
 package io.opensotck.wms.domain.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,34 +13,29 @@ import lombok.Setter;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Getter
 @Setter
-@Table(name = "produto")
-public class Produto {
+@Table(name = "setor")
+public class Setor {
 
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     @Column(name = "id")
+    @NotNull
     private Long id;
+
+    @Column(name = "codigo")
+    @NotNull
+    @NotBlank
+    private String codigo;
 
     @Column(name = "descricao")
     @NotNull
     @NotBlank
-    @Size(min= 3, max=255)
     private String descricao;
-
-    @Column(name = "categoria_id")
-    @NotNull
-    private int idCategoria;
 
     @Column(name = "status_id")
     @NotNull
-    @Min(1) //<- regra para o usuário escolher ativo (1)
-    @Max(2) //<- regra para o usuário escolher inativo (2)
+    @Min(1)
+    @Max(2)
     private int idStatus;
-
-    @Column(name = "unidade_medida_id")
-    @NotNull
-    private int idUnidadeMedida;
-
 }
