@@ -45,10 +45,4 @@ public class ProdutoController {
 
         return produtoService.atualizar(produtoId, produto);
     }
-
-    @DeleteMapping("/deletar/{produtoId}")
-    public ResponseEntity<Void> deletarProduto(@PathVariable Long produtoId) {
-        return produtoService.deletar(produtoId);
-    }
-
 }

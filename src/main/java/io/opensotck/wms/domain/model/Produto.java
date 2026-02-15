@@ -1,9 +1,7 @@
 package io.opensotck.wms.domain.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,10 +33,14 @@ public class Produto {
     @Column(name = "status_id")
     @NotNull
     @NotBlank
+    @Min(1) //<- regra para o usuário escolher ativo (1)
+    @Max(2) //<- regra para o usuário escolher inativo (2)
     private String idStatus;
 
     @Column(name = "unidade_medida_id")
     @NotNull
     @NotBlank
     private String idUnidadeMedida;
+
+
 }

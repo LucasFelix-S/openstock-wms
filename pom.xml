@@ -8,10 +8,10 @@
 		<version>3.5.10</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>io.openstock</groupId>
-	<artifactId>openstock-wms</artifactId>
+	<groupId>io.chronoslbm</groupId>
+	<artifactId>chronos-lbm-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>openstock-wms</name>
+	<name>Chronos LBM Service</name>
 	<description>Open source Warehouse Management System</description>
 	<url/>
 	<licenses>

@@ -4,6 +4,8 @@ import io.opensotck.wms.domain.model.Produto;
 import io.opensotck.wms.domain.repository.ProdutoRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -34,10 +36,12 @@ public class ProdutoService {
         return produtoRepository.findByDescricaoContaining(produtoDescricao);
     }
 
+    @Transactional
     public Produto criar(Produto produto) {
         return produtoRepository.save(produto);
     }
 
+    @Transactional
     public ResponseEntity<Produto> atualizar(Long produtoId, Produto produto) {
         if(!produtoRepository.existsById(produtoId)) {
             ResponseEntity.notFound().build();
@@ -46,15 +50,6 @@ public class ProdutoService {
         produto.setId(produtoId);
         Produto produtoAtualizado = produtoRepository.save(produto);
         return ResponseEntity.ok(produtoAtualizado);
-    }
-
-    public ResponseEntity<Void> deletar(Long produtoId) {
-        if(!produtoRepository.existsById(produtoId)) {
-            ResponseEntity.notFound().build();
-        }
-
-        produtoRepository.deleteById(produtoId);
-        return ResponseEntity.noContent().build();
     }
 
 }
