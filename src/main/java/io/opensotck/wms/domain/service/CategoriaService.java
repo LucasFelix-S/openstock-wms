@@ -2,6 +2,7 @@ package io.opensotck.wms.domain.service;
 
 import io.opensotck.wms.domain.model.Categoria;
 import io.opensotck.wms.domain.repository.CategoriaRepository;
+import io.opensotck.wms.exception.StatusInvalidoException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -44,19 +45,16 @@ public class CategoriaService {
             return ResponseEntity.notFound().build();
         }
 
+        if((categoria.getIdStatus() != 1 && categoria.getIdStatus() != 2)) {
+            throw new StatusInvalidoException("Status inválido!");
+        }
+
         categoria.setId(categoriaId);
 
         Categoria categoriaAtualizada = categoriaRepository.save(categoria);
         return ResponseEntity.ok(categoriaAtualizada);
     }
 
-    public ResponseEntity<Void> deletar(Long categoriaId) {
 
-        if(!categoriaRepository.existsById(categoriaId)) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.noContent().build();
-    }
 
 }

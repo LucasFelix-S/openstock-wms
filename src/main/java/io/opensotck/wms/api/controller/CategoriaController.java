@@ -46,9 +46,4 @@ public class CategoriaController {
         return categoriaService.atualizar(categoriaId, categoria);
     }
 
-    @DeleteMapping("/{categoriaId}")
-    public ResponseEntity<Void> deletarCategoria(@Valid @PathVariable Long categoriaId) {
-        return categoriaService.deletar(categoriaId);
-    }
-
 }
