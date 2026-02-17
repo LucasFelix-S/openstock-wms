@@ -18,7 +18,6 @@ public class Categoria {
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     @Column(name = "id")
     private Long id;
 

@@ -23,12 +23,12 @@ public class ProdutoController {
         return produtoService.listarTodos();
     }
 
-    @GetMapping("/{produtoId}")
+    @GetMapping("/id/{produtoId}")
     public ResponseEntity<Produto> listarProdutoPorId(@PathVariable Long produtoId) {
         return produtoService.listarPorId(produtoId);
     }
 
-    @GetMapping("/{produtoDescricao}")
+    @GetMapping("/descricao/{produtoDescricao}")
     public List<Produto> listarProdutoPorDescricao(@PathVariable String produtoDescricao) {
         return produtoService.listarPorNome(produtoDescricao);
     }

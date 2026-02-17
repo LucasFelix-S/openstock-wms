@@ -23,12 +23,12 @@ public class CategoriaController {
         return categoriaService.listarTodos();
     }
 
-    @GetMapping("/{categoriaId}")
+    @GetMapping("/id/{categoriaId}")
     public ResponseEntity<Categoria> listarCategoriaPorId(@PathVariable Long categoriaId) {
         return categoriaService.listarPorId(categoriaId);
     }
 
-    @GetMapping("/{categoriaDescricao}")
+    @GetMapping("/descricao/{categoriaDescricao}")
     public List<Categoria> listarCategoriaPorDescricao(@PathVariable String categoriaDescricao) {
         return categoriaService.listarPorDescricao(categoriaDescricao);
     }
