@@ -2,6 +2,7 @@ package io.opensotck.wms.domain.service;
 
 import io.opensotck.wms.domain.model.Produto;
 import io.opensotck.wms.domain.repository.ProdutoRepository;
+import io.opensotck.wms.exception.StatusInvalidoException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,6 +46,10 @@ public class ProdutoService {
     public ResponseEntity<Produto> atualizar(Long produtoId, Produto produto) {
         if(!produtoRepository.existsById(produtoId)) {
             ResponseEntity.notFound().build();
+        }
+
+        if((produto.getIdStatus() != 1 && produto.getIdStatus() != 2)) {
+            throw new StatusInvalidoException("Status inválido!");
         }
 
         produto.setId(produtoId);
