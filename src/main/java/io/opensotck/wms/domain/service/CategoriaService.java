@@ -5,6 +5,8 @@ import io.opensotck.wms.domain.repository.CategoriaRepository;
 import io.opensotck.wms.exception.StatusInvalidoException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -35,10 +37,12 @@ public class CategoriaService {
         return categoriaRepository.findByDescricaoContaining(categoriaDescricao);
     }
 
+    @Transactional
     public Categoria criar(Categoria categoria) {
         return categoriaRepository.save(categoria);
     }
 
+    @Transactional
     public ResponseEntity<Categoria> atualizar(Long categoriaId, Categoria categoria) {
 
         if(!categoriaRepository.existsById(categoriaId)) {

@@ -2,9 +2,10 @@ package io.opensotck.wms.api.controller;
 
 import io.opensotck.wms.domain.model.Setor;
 import io.opensotck.wms.domain.service.SetorService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +22,23 @@ public class SetorController {
     @GetMapping
     public List<Setor> listarSetor() {
         return setorService.listarTodos();
+    }
+
+    @GetMapping("/id/{setorId}")
+    public ResponseEntity<Setor> listarSetorPorId(@PathVariable Long setorId) {
+        return setorService.listarPorId(setorId);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Setor criarSetor(@Valid @RequestBody Setor setor) {
+        return setorService.criar(setor);
+    }
+
+    @PutMapping("/{setorId}")
+    public ResponseEntity<Setor> atualizarSetor(@Valid @PathVariable Long setorId,
+                                                @RequestBody Setor setor) {
+        return setorService.atualizar(setorId, setor);
     }
 
 }
