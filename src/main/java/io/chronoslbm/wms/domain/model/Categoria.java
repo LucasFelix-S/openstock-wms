@@ -1,4 +1,4 @@
-package io.opensotck.wms.domain.model;
+package io.chronoslbm.wms.domain.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -30,5 +30,4 @@ public class Categoria {
     @Min(1)
     @Max(2)
     private int idStatus;
-
 }

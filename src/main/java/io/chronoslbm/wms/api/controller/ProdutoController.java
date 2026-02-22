@@ -1,7 +1,7 @@
-package io.opensotck.wms.api.controller;
+package io.chronoslbm.wms.api.controller;
 
-import io.opensotck.wms.domain.model.Produto;
-import io.opensotck.wms.domain.service.ProdutoService;
+import io.chronoslbm.wms.domain.model.Produto;
+import io.chronoslbm.wms.domain.service.ProdutoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package io.opensotck.wms.domain.model;
+package io.chronoslbm.wms.domain.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -31,12 +31,11 @@ public class Produto {
 
     @Column(name = "status_id")
     @NotNull
-    @Min(1) //<- regra para o usuário escolher ativo (1)
-    @Max(2) //<- regra para o usuário escolher inativo (2)
+    @Min(1) //<- regra que eu criei para o usuário escolher ativo (1)
+    @Max(2) //<- regra que eu criei para o usuário escolher inativo (2)
     private int idStatus;
 
     @Column(name = "unidade_medida_id")
     @NotNull
     private int idUnidadeMedida;
-
 }

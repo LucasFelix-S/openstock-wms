@@ -1,8 +1,8 @@
-package io.opensotck.wms.domain.service;
+package io.chronoslbm.wms.domain.service;
 
-import io.opensotck.wms.domain.model.Produto;
-import io.opensotck.wms.domain.repository.ProdutoRepository;
-import io.opensotck.wms.exception.StatusInvalidoException;
+import io.chronoslbm.wms.domain.model.Produto;
+import io.chronoslbm.wms.domain.repository.ProdutoRepository;
+import io.chronoslbm.wms.exception.StatusInvalidoException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

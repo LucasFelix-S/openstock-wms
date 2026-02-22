@@ -1,4 +1,4 @@
-package io.opensotck.wms;
+package io.chronoslbm.wms;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

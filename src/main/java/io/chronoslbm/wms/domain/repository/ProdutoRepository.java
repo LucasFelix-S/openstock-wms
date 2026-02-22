@@ -1,6 +1,6 @@
-package io.opensotck.wms.domain.repository;
+package io.chronoslbm.wms.domain.repository;
 
-import io.opensotck.wms.domain.model.Produto;
+import io.chronoslbm.wms.domain.model.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 

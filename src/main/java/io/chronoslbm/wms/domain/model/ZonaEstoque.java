@@ -1,4 +1,4 @@
-package io.opensotck.wms.domain.model;
+package io.chronoslbm.wms.domain.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
@@ -13,14 +13,13 @@ import lombok.Setter;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Getter
 @Setter
-@Table(name = "setor")
-public class Setor {
+@Table(name = "zona_estoque")
+public class ZonaEstoque {
 
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @NotNull
     private Long id;
 
     @Column(name = "codigo")
@@ -37,5 +36,5 @@ public class Setor {
     @NotNull
     @Min(1)
     @Max(2)
-    private int idStatus;
+    private Long idStatus;
 }

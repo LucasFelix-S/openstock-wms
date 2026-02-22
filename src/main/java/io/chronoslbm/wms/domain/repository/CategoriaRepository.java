@@ -1,6 +1,6 @@
-package io.opensotck.wms.domain.repository;
+package io.chronoslbm.wms.domain.repository;
 
-import io.opensotck.wms.domain.model.Categoria;
+import io.chronoslbm.wms.domain.model.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
