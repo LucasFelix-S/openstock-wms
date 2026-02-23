@@ -12,7 +12,6 @@ import java.util.Optional;
 
 @Service
 public class ProdutoService {
-
     private final ProdutoRepository produtoRepository;
 
     public ProdutoService(ProdutoRepository produtoRepository) {
