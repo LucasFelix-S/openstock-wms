@@ -29,11 +29,16 @@ public class Produto {
     @NotNull
     private int idCategoria;
 
-    @Column(name = "status_id")
-    @NotNull
-    @Min(1) //<- regra que eu criei para o usuário escolher ativo (1)
-    @Max(2) //<- regra que eu criei para o usuário escolher inativo (2)
-    private int idStatus;
+//    @Column(name = "status_id")
+//    @NotNull
+//    @Min(1) //<- regra que eu criei para o usuário escolher ativo (1)
+//    @Max(2) //<- regra que eu criei para o usuário escolher inativo (2)
+//    private int idStatus;
+
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private Status status;
+
 
     @Column(name = "unidade_medida_id")
     @NotNull

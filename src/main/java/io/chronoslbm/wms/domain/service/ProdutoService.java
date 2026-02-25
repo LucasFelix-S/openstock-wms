@@ -18,6 +18,7 @@ public class ProdutoService {
         this.produtoRepository = produtoRepository;
     }
 
+    @Transactional
     public List<Produto> listarTodos() {
         return produtoRepository.findAll();
     }
@@ -47,9 +48,9 @@ public class ProdutoService {
             ResponseEntity.notFound().build();
         }
 
-        if((produto.getIdStatus() != 1 && produto.getIdStatus() != 2)) {
-            throw new StatusInvalidoException("Status inválido!");
-        }
+//        if((produto.getIdStatus() != 1 && produto.getIdStatus() != 2)) {
+//            throw new StatusInvalidoException("Status inválido!");
+//        }
 
         produto.setId(produtoId);
         Produto produtoAtualizado = produtoRepository.save(produto);
