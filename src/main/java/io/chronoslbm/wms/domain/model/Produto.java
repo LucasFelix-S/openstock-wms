@@ -25,22 +25,16 @@ public class Produto {
     @Size(min= 3, max=255)
     private String descricao;
 
-    @Column(name = "categoria_id")
-    @NotNull
-    private int idCategoria;
-
-//    @Column(name = "status_id")
-//    @NotNull
-//    @Min(1) //<- regra que eu criei para o usuário escolher ativo (1)
-//    @Max(2) //<- regra que eu criei para o usuário escolher inativo (2)
-//    private int idStatus;
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 
     @ManyToOne
     @JoinColumn(name = "status_id")
     private Status status;
 
+    @ManyToOne
+    @JoinColumn(name = "unidade_medida_id")
+    private UnidadeMedida unidadeMedida;
 
-    @Column(name = "unidade_medida_id")
-    @NotNull
-    private int idUnidadeMedida;
 }
