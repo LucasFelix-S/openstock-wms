@@ -8,7 +8,6 @@ import io.chronoslbm.wms.domain.repository.UnidadeMedidaRepository;
 import io.chronoslbm.wms.exception.DomainException;
 import io.chronoslbm.wms.exception.EntityNotFundException;
 import io.chronoslbm.wms.exception.StatusInvalidoException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
@@ -56,17 +55,17 @@ public class ProdutoService {
     }
 
     @Transactional
-    public ResponseEntity<Produto> atualizar(Long produtoId, Produto produto) {
+    public Produto atualizar(Long produtoId, Produto produto) {
 
         if(!produtoRepository.existsById(produtoId)) {
-            return ResponseEntity.notFound().build();
+            throw new EntityNotFundException("ID do produto não encontrado! ID= " + produtoId);
         }
 
         validarProduto(produto);
 
         produto.setId(produtoId);
         Produto produtoAtualizado = produtoRepository.save(produto);
-        return ResponseEntity.ok(produtoAtualizado);
+        return produtoAtualizado;
     }
 
     private void validarProduto(Produto produto) {
