@@ -6,6 +6,7 @@ import io.chronoslbm.wms.domain.repository.ProdutoRepository;
 import io.chronoslbm.wms.domain.repository.StatusRepository;
 import io.chronoslbm.wms.domain.repository.UnidadeMedidaRepository;
 import io.chronoslbm.wms.exception.DomainException;
+import io.chronoslbm.wms.exception.EntityNotFundException;
 import io.chronoslbm.wms.exception.StatusInvalidoException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -35,14 +36,14 @@ public class ProdutoService {
         return produtoRepository.findAll();
     }
 
-    public ResponseEntity<Produto> listarPorId(Long produtoId) {
+    public Produto listarPorId(Long produtoId) {
         Optional<Produto> produtoOptional = produtoRepository.findById(produtoId);
 
-        if(produtoOptional.isPresent()) {
-            return ResponseEntity.ok(produtoOptional.get());
+        if(!produtoRepository.existsById(produtoId)) {
+            throw new EntityNotFundException("ID do produto não encontrado! ID= " + produtoId);
         }
 
-        return ResponseEntity.notFound().build();
+        return produtoOptional.get();
     }
 
     public List<Produto> listarPorNome(String produtoDescricao) {
