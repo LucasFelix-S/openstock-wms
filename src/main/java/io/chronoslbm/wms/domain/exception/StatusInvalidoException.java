@@ -1,4 +1,4 @@
-package io.chronoslbm.wms.exception;
+package io.chronoslbm.wms.domain.exception;
 
 public class StatusInvalidoException extends RuntimeException {
     public StatusInvalidoException(String message) {

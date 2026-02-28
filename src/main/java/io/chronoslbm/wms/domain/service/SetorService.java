@@ -3,9 +3,8 @@ package io.chronoslbm.wms.domain.service;
 import io.chronoslbm.wms.domain.model.Setor;
 import io.chronoslbm.wms.domain.repository.SetorRepository;
 import io.chronoslbm.wms.domain.repository.StatusRepository;
-import io.chronoslbm.wms.exception.EntityNotFoundException;
-import io.chronoslbm.wms.exception.StatusInvalidoException;
-import org.springframework.http.ResponseEntity;
+import io.chronoslbm.wms.domain.exception.EntityNotFoundException;
+import io.chronoslbm.wms.domain.exception.StatusInvalidoException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,4 +1,4 @@
-package io.chronoslbm.wms.exception;
+package io.chronoslbm.wms.domain.exception;
 
 public class EntityNotFoundException extends RuntimeException {
     public EntityNotFoundException(String message) {
