@@ -26,9 +26,7 @@ public class Categoria {
     @Size(min=3, max=50)
     private String descricao;
 
-    @Column(name = "status_id")
-    @NotNull
-    @Min(1)
-    @Max(2)
-    private int idStatus;
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private Status status;
 }

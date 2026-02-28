@@ -6,7 +6,7 @@ import io.chronoslbm.wms.domain.repository.ProdutoRepository;
 import io.chronoslbm.wms.domain.repository.StatusRepository;
 import io.chronoslbm.wms.domain.repository.UnidadeMedidaRepository;
 import io.chronoslbm.wms.exception.DomainException;
-import io.chronoslbm.wms.exception.EntityNotFundException;
+import io.chronoslbm.wms.exception.EntityNotFoundException;
 import io.chronoslbm.wms.exception.StatusInvalidoException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,7 +39,7 @@ public class ProdutoService {
         Optional<Produto> produtoOptional = produtoRepository.findById(produtoId);
 
         if(!produtoRepository.existsById(produtoId)) {
-            throw new EntityNotFundException("ID do produto não encontrado! ID= " + produtoId);
+            throw new EntityNotFoundException("ID do produto não encontrado! ID= " + produtoId);
         }
 
         return produtoOptional.get();
@@ -58,7 +58,7 @@ public class ProdutoService {
     public Produto atualizar(Long produtoId, Produto produto) {
 
         if(!produtoRepository.existsById(produtoId)) {
-            throw new EntityNotFundException("ID do produto não encontrado! ID= " + produtoId);
+            throw new EntityNotFoundException("ID do produto não encontrado! ID= " + produtoId);
         }
 
         validarProduto(produto);
@@ -96,4 +96,5 @@ public class ProdutoService {
             throw new DomainException("Categoria inválida!");
         }
     }
+
 }

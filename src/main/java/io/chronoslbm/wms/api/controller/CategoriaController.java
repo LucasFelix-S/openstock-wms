@@ -25,7 +25,8 @@ public class CategoriaController {
 
     @GetMapping("/id/{categoriaId}")
     public ResponseEntity<Categoria> listarCategoriaPorId(@PathVariable Long categoriaId) {
-        return categoriaService.listarPorId(categoriaId);
+        Categoria categoria = categoriaService.listarPorId(categoriaId);
+        return ResponseEntity.ok(categoria);
     }
 
     @GetMapping("/descricao/{categoriaDescricao}")
@@ -40,10 +41,10 @@ public class CategoriaController {
     }
 
     @PutMapping("/{categoriaId}")
-    public ResponseEntity<Categoria> atualizarCategoria(@Valid @PathVariable Long categoriaId,
-                                                        @RequestBody Categoria categoria) {
+    public ResponseEntity<Categoria> atualizarCategoria(@PathVariable Long categoriaId,
+                                                        @Valid @RequestBody Categoria categoria) {
 
-        return categoriaService.atualizar(categoriaId, categoria);
+        categoriaService.atualizar(categoriaId, categoria);
+        return ResponseEntity.ok(categoria);
     }
-
 }
