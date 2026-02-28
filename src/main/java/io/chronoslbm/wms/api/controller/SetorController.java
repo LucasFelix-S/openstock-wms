@@ -26,7 +26,8 @@ public class SetorController {
 
     @GetMapping("/id/{setorId}")
     public ResponseEntity<Setor> listarSetorPorId(@PathVariable Long setorId) {
-        return setorService.listarPorId(setorId);
+        Setor setor = setorService.listarPorId(setorId);
+        return ResponseEntity.ok(setor);
     }
 
     @PostMapping
@@ -38,7 +39,8 @@ public class SetorController {
     @PutMapping("/{setorId}")
     public ResponseEntity<Setor> atualizarSetor(@Valid @PathVariable Long setorId,
                                                 @RequestBody Setor setor) {
-        return setorService.atualizar(setorId, setor);
+        setorService.atualizar(setorId, setor);
+        return ResponseEntity.ok(setor);
     }
 
 }

@@ -2,6 +2,8 @@ package io.chronoslbm.wms.domain.service;
 
 import io.chronoslbm.wms.domain.model.Setor;
 import io.chronoslbm.wms.domain.repository.SetorRepository;
+import io.chronoslbm.wms.domain.repository.StatusRepository;
+import io.chronoslbm.wms.exception.EntityNotFoundException;
 import io.chronoslbm.wms.exception.StatusInvalidoException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,23 +15,25 @@ import java.util.Optional;
 @Service
 public class SetorService {
     private SetorRepository setorRepository;
+    private StatusRepository statusRepository;
 
-    public SetorService(SetorRepository setorRepository) {
+    public SetorService(SetorRepository setorRepository, StatusRepository statusRepository) {
         this.setorRepository = setorRepository;
+        this.statusRepository = statusRepository;
     }
 
     public List<Setor> listarTodos() {
         return setorRepository.findAll();
     }
 
-    public ResponseEntity<Setor> listarPorId(Long setorId) {
+    public Setor listarPorId(Long setorId) {
         Optional<Setor> setorOptional = setorRepository.findById(setorId);
 
-        if(setorOptional.isPresent()) {
-           return ResponseEntity.ok(setorOptional.get());
+        if(setorOptional.isEmpty()) {
+            throw new EntityNotFoundException("ID do setor não encontrado! ID= " + setorId);
         }
 
-        return ResponseEntity.notFound().build();
+        return setorOptional.get();
     }
 
     @Transactional
@@ -38,20 +42,24 @@ public class SetorService {
     }
 
     @Transactional
-    public ResponseEntity<Setor> atualizar(Long setorId, Setor setor) {
+    public Setor atualizar(Long setorId, Setor setor) {
 
         if(!setorRepository.existsById(setorId)) {
-            return ResponseEntity.notFound().build();
+            throw new EntityNotFoundException("ID do setor não encontrado! ID= " + setorId);
         }
 
-        if((setor.getIdStatus() != 1 && setor.getIdStatus() != 2)) {
+        if(setor.getStatus() == null || setor.getStatus().getId() == null) {
+            throw new StatusInvalidoException("Status não pode ser nulo!");
+        }
+
+        if(!statusRepository.existsById(setor.getStatus().getId())) {
             throw new StatusInvalidoException("Status inválido!");
         }
 
         setor.setId(setorId);
         Setor setorAtualizado = setorRepository.save(setor);
 
-        return ResponseEntity.ok(setorAtualizado);
+        return setorAtualizado;
     }
 
 }

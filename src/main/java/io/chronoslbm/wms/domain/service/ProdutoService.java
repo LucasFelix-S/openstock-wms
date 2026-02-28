@@ -38,7 +38,7 @@ public class ProdutoService {
     public Produto listarPorId(Long produtoId) {
         Optional<Produto> produtoOptional = produtoRepository.findById(produtoId);
 
-        if(!produtoRepository.existsById(produtoId)) {
+        if(produtoOptional.isEmpty()) {
             throw new EntityNotFoundException("ID do produto não encontrado! ID= " + produtoId);
         }
 
