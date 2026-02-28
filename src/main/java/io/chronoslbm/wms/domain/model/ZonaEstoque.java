@@ -32,9 +32,7 @@ public class ZonaEstoque {
     @NotBlank
     private String descricao;
 
-    @Column(name = "status_id")
-    @NotNull
-    @Min(1)
-    @Max(2)
-    private Long idStatus;
+    @JoinColumn(name = "status_id")
+    @ManyToOne
+    private Status status;
 }

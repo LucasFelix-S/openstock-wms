@@ -20,5 +20,4 @@ public class LocalEstoqueController {
     public List<LocalEstoque> listarLocalEstoque() {
         return localEstoqueService.listarTodos();
     }
-
 }

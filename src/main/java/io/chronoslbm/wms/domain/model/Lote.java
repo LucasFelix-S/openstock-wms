@@ -21,9 +21,9 @@ public class Lote {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "produto_id")
-    @NotNull
-    private Long produtoId;
+    @JoinColumn(name = "produto_id")
+    @ManyToOne
+    private Produto produto;
 
     @Column(name = "lote")
     @NotNull

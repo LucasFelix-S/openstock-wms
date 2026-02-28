@@ -51,19 +51,15 @@ public class LocalEstoque {
     @NotBlank
     private String container;
 
-    @Column(name = "zona_estoque_id")
-    @NotNull
-    @NotBlank
-    private Long zonaEstoqueId;
+    @JoinColumn(name = "zona_estoque_id")
+    @ManyToOne
+    private ZonaEstoque zonaEstoque;
 
-    @Column(name = "setor_id")
-    @NotNull
-    @NotBlank
-    private Long setorId;
+    @JoinColumn(name = "setor_id")
+    @ManyToOne
+    private Setor setor;
 
-    @Column(name = "status_id")
-    @NotNull
-    @Min(1)
-    @Max(2)
-    private Long statusId;
+    @JoinColumn(name = "status_id")
+    @ManyToOne
+    private Status status;
 }

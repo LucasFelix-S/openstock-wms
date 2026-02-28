@@ -36,5 +36,4 @@ public class Produto {
     @ManyToOne
     @JoinColumn(name = "unidade_medida_id")
     private UnidadeMedida unidadeMedida;
-
 }

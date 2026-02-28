@@ -43,7 +43,6 @@ public class CategoriaController {
     @PutMapping("/{categoriaId}")
     public ResponseEntity<Categoria> atualizarCategoria(@PathVariable Long categoriaId,
                                                         @Valid @RequestBody Categoria categoria) {
-
         categoriaService.atualizar(categoriaId, categoria);
         return ResponseEntity.ok(categoria);
     }
