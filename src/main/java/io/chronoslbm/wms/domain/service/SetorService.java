@@ -7,14 +7,13 @@ import io.chronoslbm.wms.domain.exception.EntityNotFoundException;
 import io.chronoslbm.wms.domain.exception.StatusInvalidoException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class SetorService {
-    private SetorRepository setorRepository;
-    private StatusRepository statusRepository;
+    private final SetorRepository setorRepository;
+    private final StatusRepository statusRepository;
 
     public SetorService(SetorRepository setorRepository, StatusRepository statusRepository) {
         this.setorRepository = setorRepository;
@@ -29,7 +28,7 @@ public class SetorService {
         Optional<Setor> setorOptional = setorRepository.findById(setorId);
 
         if(setorOptional.isEmpty()) {
-            throw new EntityNotFoundException("ID do setor não encontrado! ID= " + setorId);
+            throw new EntityNotFoundException("Setor não encontrado! ID Setor= " + setorId);
         }
 
         return setorOptional.get();
@@ -44,7 +43,7 @@ public class SetorService {
     public Setor atualizar(Long setorId, Setor setor) {
 
         if(!setorRepository.existsById(setorId)) {
-            throw new EntityNotFoundException("ID do setor não encontrado! ID= " + setorId);
+            throw new EntityNotFoundException("Setor não encontrado! ID Setor= " + setorId);
         }
 
         if(setor.getStatus() == null || setor.getStatus().getId() == null) {
@@ -56,9 +55,7 @@ public class SetorService {
         }
 
         setor.setId(setorId);
-        Setor setorAtualizado = setorRepository.save(setor);
-
-        return setorAtualizado;
+        return setorRepository.save(setor);
     }
 
 }

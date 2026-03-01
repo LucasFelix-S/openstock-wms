@@ -39,7 +39,7 @@ public class ProdutoService {
         Optional<Produto> produtoOptional = produtoRepository.findById(produtoId);
 
         if(produtoOptional.isEmpty()) {
-            throw new EntityNotFoundException("ID do produto não encontrado! ID= " + produtoId);
+            throw new EntityNotFoundException("Produto não encontrado. ID Produto= " + produtoId);
         }
 
         return produtoOptional.get();
@@ -58,14 +58,12 @@ public class ProdutoService {
     public Produto atualizar(Long produtoId, Produto produto) {
 
         if(!produtoRepository.existsById(produtoId)) {
-            throw new EntityNotFoundException("ID do produto não encontrado! ID= " + produtoId);
+            throw new EntityNotFoundException("Produto não encontrado. ID Produto= " + produtoId);
         }
 
         validarProduto(produto);
-
         produto.setId(produtoId);
-        Produto produtoAtualizado = produtoRepository.save(produto);
-        return produtoAtualizado;
+        return produtoRepository.save(produto);
     }
 
     private void validarProduto(Produto produto) {
@@ -81,20 +79,16 @@ public class ProdutoService {
             throw new DomainException("Categoria não pode ser nulo!");
         }
 
-        Long statusId = produto.getStatus().getId();
-        if(!statusRepository.existsById(statusId)) {
+        if(!statusRepository.existsById(produto.getStatus().getId())) {
             throw new StatusInvalidoException("Status inválido!");
         }
 
-        Long unidadeMedidaId = produto.getUnidadeMedida().getId();
-        if(!unidadeMedidaRepository.existsById(unidadeMedidaId)) {
+        if(!unidadeMedidaRepository.existsById(produto.getUnidadeMedida().getId())) {
             throw new DomainException("Unidade de medida inválida!");
         }
 
-        Long categoriaId = produto.getCategoria().getId();
-        if(!categoriaRepository.existsById(categoriaId)) {
+        if(!categoriaRepository.existsById(produto.getCategoria().getId())) {
             throw new DomainException("Categoria inválida!");
         }
     }
-
 }

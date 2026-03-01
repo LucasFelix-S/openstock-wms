@@ -60,7 +60,6 @@ public class CategoriaService {
         }
 
         categoria.setId(categoriaId);
-        Categoria categoriaAtualizada = categoriaRepository.save(categoria);
-        return categoriaAtualizada;
+        return categoriaRepository.save(categoria);
     }
 }

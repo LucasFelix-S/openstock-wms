@@ -180,12 +180,14 @@ chronos-lbm-service/
 ├── src/
 │   └── main/
 │       └── java/io/chronoslbm/wms/
+│           └── api/controller
+│               ├── controller/     # Endpoints REST (em desenvolvimento)
 │           └── domain/
+│               ├── enums           # Enumerações
 │               ├── model/          # Entidades JPA (Produto, Categoria, Lote, etc.)
 │               ├── repository/     # Interfaces Spring Data JPA
 │               ├── service/        # Regras de negócio e casos de uso
-│               ├── exception/      # Exceções de domínio customizadas
-│               └── controller/     # Endpoints REST (em desenvolvimento)
+│               └── exception/      # Exceções de domínio customizadas
 ├── src/main/resources/
 │   └── application.properties      # Configurações da aplicação
 ├── pom.xml
